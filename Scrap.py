@@ -11,9 +11,8 @@ fake_headers = {
                 Chrome/91.0.4472.124 Safari/537.36'
         }
 Links = '//h2/a/@href'
-Titles = '//h2[@class="entry-title"]'
-Desc = '////article/div/div/p'
-
+Titles = "//h2[@class='entry-title']/text()"
+Desc = "//article/div[@class='entry-content']/p/text()"
 
 def parse_notice(link, today):
     try:
@@ -25,7 +24,7 @@ def parse_notice(link, today):
             try:
                 title = parsed.xpath(Titles)[0]
                 title = title.replace('\"', '').strip()
-                print("Title: ", title)
+
                 if len(parsed.xpath(Desc)) > 2:
                     summary = ""
                     for i in parsed.xpath(Desc):
@@ -34,10 +33,11 @@ def parse_notice(link, today):
                     summary = parsed.xpath(Desc)[0]
 
             except:
+                print("Error en la noticia: " + changeName(title))
                 return
-
-            open(f'{today}/{title}.txt', "x")
-            with open(f'{today}/{title}.txt', 'w', encoding='utf-8') as f:
+            
+            ruta = "res/" + today + "/" + changeName(title) + ".txt"
+            with open(ruta, "w", encoding='utf-8') as f:
                 f.write(title)
                 f.write('\n\n')
                 f.write(summary)
@@ -46,6 +46,15 @@ def parse_notice(link, today):
             raise ValueError(f'Error: {response.status_code}')
     except ValueError as ve:
         print(ve)
+
+def changeName(title):
+    i = 0
+    temp = ""
+    while i < 20:
+        temp = temp + title[i]
+        i = i + 1
+
+    return temp
 
 
 def parse_home():
@@ -57,9 +66,11 @@ def parse_home():
             parsedLinks = parsed.xpath(Links)
 
             today = datetime.date.today().strftime('%d-%m-%Y')
-            if not os.path.isdir(today):
-                os.mkdir(today)
+            if not os.path.isdir("res/" + today):
+                os.mkdir("res/")
+                os.mkdir("res/" + today)
 
+            print(len(parsedLinks))
             for link in parsedLinks:
                 parse_notice(link, today)
         else:
