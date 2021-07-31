@@ -25,6 +25,7 @@ SOURCES = ResourceList([
                  name_extractor=lambda e:e.text,
                  url_extractor=lambda e:e.attrib['href'])
 
+        # TODO: Add another sources
         ], validation=is_my_calendar)
 
 
