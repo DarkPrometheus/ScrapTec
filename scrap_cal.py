@@ -2,8 +2,18 @@
 """ Fetchs scholar calendar info """
 
 from os import system as cmd
+import re
 import lxml
 from Resource import Resource, ResourceList
+
+
+def is_my_tec_cal(anchor):
+    """ Validation func """
+    name = anchor.text.upper()
+    re_res = re.match(r'.+ (\w+)-(\w+).*', name)
+    return (re_res is not None) and \
+           ('2021' in name) and \
+           (re_res.group(1) in ['AGO', 'SEP'])
 
 
 def is_my_calendar(name):
@@ -23,9 +33,13 @@ SOURCES = ResourceList([
                  'dsc-depto-de-sistemas-y-comp/calendarios',
                  '//section[2]//h3/div/span/a',
                  name_extractor=lambda e:e.text,
-                 url_extractor=lambda e:e.attrib['href'])
+                 url_extractor=lambda e:e.attrib['href']),
+        Resource('https://www.tijuana.tecnm.mx/calendario-academico/',
+                 '//article/div/p/em/a',
+                 validation=is_my_tec_cal,
+                 name_extractor=lambda e:e.text,
+                 url_extractor=lambda e:e.attrib['href']),
 
-        # TODO: Add another sources
         ], validation=is_my_calendar)
 
 
