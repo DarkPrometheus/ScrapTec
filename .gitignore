@@ -2,3 +2,4 @@ env
 /res
 *.html
 __pycache__
+*.py@neomake*.py
