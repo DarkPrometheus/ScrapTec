@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const { token } = require('./secrets.js')
 
 client.on('ready', () => {
     console.log(`Bot listo`);
@@ -14,10 +15,12 @@ client.on('message', msg => {
 
 const sendMessaje = () => {
     const channel = client.channels.cache.find(ch => ch.name === 'tec');
-    channel.send("Hola mundo")
+    channel.send("Hola mundo").then(() => {
+        client.destroy();
+    });
 }
 
-client.login('ODcxMTU2NTczMTAyMzAxMjQ1.YQXNyA.bIWCUq4nozZWp4JTpID51tlKIbk');
+client.login(token);
 
 // Iniciar nodemon:
 // npx nodemon index.js
