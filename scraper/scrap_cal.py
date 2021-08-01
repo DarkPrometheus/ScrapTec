@@ -24,7 +24,7 @@ def is_my_calendar(name):
                    'AGOSTO' in name or
                    'SEPTIEMBRE' in name or
                    'ENERO' in name or
-                    'FEBRERO' in name or # For testing only
+                    # 'FEBRERO' in name or # For testing only
                    'DICIEMPRE' in name))
 
 
