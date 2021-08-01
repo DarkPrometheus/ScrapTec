@@ -1,33 +1,33 @@
-const { Client, MessageEmbed } = require('discord.js');
-const client = new Client();
+const Discord = require('discord.js');
+const client = new Discord.Client();
 const { token } = require('./secrets.js')
 
-let json = require('./data.json');
-const channel = client.channels.cache.find(ch => ch.name === 'tec');
-let Title = json[0].title;
-
 client.on('ready', () => {
-    console.log(`Bot listo`);
-});
-
-client.on('message', msg => {
-    if (msg.content === 'ping') {
-        const mensaje = new MessageEmbed()
-            .setTitle(Title)
-            .setColor("#016E3E")
-            .setAuthor("Tec Tijuana", "https://www.tijuana.tecnm.mx/wp-content/uploads/2018/09/logo-ITT-2018.jpg")
-            .setDescription(des);
-        msg.channel.send(mensaje)
-    }
+    sendMessaje();
 });
 
 const sendMessaje = () => {
+    const channel = client.channels.cache.find(ch => ch.name === 'tec');
     channel.send("Hola mundo").then(() => {
         client.destroy();
     });
 }
 
-client.login(token);
+
+module.exports = function (data) {
+    /*
+    data = [
+        {
+            title: '2021 Febrero - Junio',
+            url: 'https://www.google.com/url?q=https%3A%2F%2Fsites.google.com%2Ftectijuana.edu.mx%2Fdsc-depto-de-sistemas-y-comp%2Fdscinicio%2Fcalendario-2021-febrero-julio%3Fauthuser%3D0&sa=D&sntz=1&usg=AFQjCNG_M4TlsttYlTxqkRn8g6P30UNwOw'
+        },
+    ]
+    */
+
+    client.login(token);
+
+    return 'Okay.'; // or any message
+}
 
 // Iniciar nodemon:
 // npx nodemon index.js
