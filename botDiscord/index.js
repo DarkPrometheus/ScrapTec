@@ -1,20 +1,12 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const { token } = require('./secrets.js')
 
 client.on('ready', () => {
-    console.log(`Bot listo`);
+  client.channels.cache.get('871179765825032243').
+    send('Hola y adios').then(() => {
+      client.destroy();
+    });
 });
 
-client.on('message', msg => {
-    if (msg.content === 'ping') {
-        msg.reply('pong');
-    }
-});
-
-client.login('ODcxMTU2NTczMTAyMzAxMjQ1.YQXNyA.BI5JfAeYcokwQYI5IdNuscueCPU');
-
-// Iniciar nodemon:
-// npx nodemon index.js
-
-// Tutorial bot:
-// https://www.youtube.com/watch?v=EUB777JJT5E
+client.login(token);

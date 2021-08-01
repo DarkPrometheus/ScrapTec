@@ -4,3 +4,5 @@ env
 *.html
 __pycache__
 *.py@neomake*.py
+__pycache__
+botDiscord/secrets.js
