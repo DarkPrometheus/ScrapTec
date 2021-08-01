@@ -1,10 +1,10 @@
-const func = require('../index');
+const next = require('../index');
 
 module.exports = async function (context, req) {
     const content = (req.body && req.body.content);
 
     context.res = {
         // status: 200, /* Defaults to 200 */
-        body: func(content)
+        body: content ? next(content) || 200 : 'No data.',
     };
 }

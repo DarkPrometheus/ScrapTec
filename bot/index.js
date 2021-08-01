@@ -1,18 +1,4 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
-const { token } = require('./secrets.js')
-
-client.on('ready', () => {
-    sendMessaje();
-});
-
-const sendMessaje = () => {
-    const channel = client.channels.cache.find(ch => ch.name === 'tec');
-    channel.send("Hola mundo").then(() => {
-        client.destroy();
-    });
-}
-
+const next = require('./ntf.js');
 
 module.exports = function (data) {
     /*
@@ -23,14 +9,6 @@ module.exports = function (data) {
         },
     ]
     */
-
-    client.login(token);
-
+    next(data);
     return 'Okay.'; // or any message
 }
-
-// Iniciar nodemon:
-// npx nodemon index.js
-
-// Tutorial bot:
-// https://www.youtube.com/watch?v=EUB777JJT5E
