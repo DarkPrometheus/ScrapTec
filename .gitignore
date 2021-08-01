@@ -138,4 +138,6 @@ __pycache__
 *.py@neomake*.py
 __pycache__
 botDiscord/secrets.js
-*.json
+data.json
+
+.vscode

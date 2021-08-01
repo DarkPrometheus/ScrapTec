@@ -3,9 +3,10 @@
 
 from json import dumps
 from scrap_cal import start
+import requests
 
 
-def request():
+def request(url):
     """ Single request """
     data = start()
 
@@ -13,10 +14,9 @@ def request():
         data = list(map(
             lambda e: {'title': e[0], 'url': e[1]},
             data))
-        
-        with open('botDiscord/data.json', 'w') as result:
-            result.write(dumps(data))
+
+        requests.post(url, data=dumps({'content': data}))
 
 
 if __name__ == '__main__':
-    request()
+    request('http://localhost:7071/api/HttpTriggerBot')
