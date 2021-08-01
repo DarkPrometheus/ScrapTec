@@ -3,15 +3,21 @@ const client = new Discord.Client();
 
 client.on('ready', () => {
     console.log(`Bot listo`);
+    sendMessaje();
 });
 
 client.on('message', msg => {
     if (msg.content === 'ping') {
-        msg.reply('pong');
+
     }
 });
 
-client.login('ODcxMTU2NTczMTAyMzAxMjQ1.YQXNyA.BI5JfAeYcokwQYI5IdNuscueCPU');
+const sendMessaje = () => {
+    const channel = client.channels.cache.find(ch => ch.name === 'tec');
+    channel.send("Hola mundo")
+}
+
+client.login('ODcxMTU2NTczMTAyMzAxMjQ1.YQXNyA.bIWCUq4nozZWp4JTpID51tlKIbk');
 
 // Iniciar nodemon:
 // npx nodemon index.js
