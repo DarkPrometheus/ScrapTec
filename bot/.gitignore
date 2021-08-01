@@ -1,0 +1,6 @@
+env
+/node_modules
+/res
+*.html
+__pycache__
+*.py@neomake*.py
