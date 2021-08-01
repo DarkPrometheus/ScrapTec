@@ -1,4 +1,3 @@
-import datetime
 import logging
 from main import request
 
@@ -10,4 +9,8 @@ def main(mytimer: func.TimerRequest) -> None:
     if mytimer.past_due:
         logging.info('The timer is past due!')
 
-    request('http://localhost:7071/api/HttpTriggerBot')
+    url = ''
+    with open('bot_url.secret', 'rt') as s:
+        url = str.strip(s.read())
+
+    request(url, logging)

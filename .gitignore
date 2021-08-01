@@ -137,7 +137,8 @@ env
 __pycache__
 *.py@neomake*.py
 __pycache__
-botDiscord/secrets.js
+secrets.js
+secrets.py
 data.json
 
 .vscode

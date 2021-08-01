@@ -5,6 +5,6 @@ module.exports = async function (context, req) {
 
     context.res = {
         // status: 200, /* Defaults to 200 */
-        body: content ? next(content) || 200 : 'No data.',
+        body: content ? await next(content) || 200 : 'No data.',
     };
 }

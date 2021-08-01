@@ -9,6 +9,8 @@ module.exports = function (data) {
         },
     ]
     */
-    next(data);
-    return 'Okay.'; // or any message
+    
+    return new Promise(resolve => {
+        next(data).then(resolve);
+    });
 }
