@@ -13,7 +13,7 @@ def request():
         data = list(map(
             lambda e: {'title': e[0], 'url': e[1]},
             data))
-
+        
         with open('botDiscord/data.json', 'w') as result:
             result.write(dumps(data))
 
